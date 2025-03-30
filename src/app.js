@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const movieRoutes = require('./routes/movie.routes');
+const userRoutes = require('./routes/user.routes');
 const errorHandler = require('./middlewares/errorHandler');
 const AppError = require('./utils/AppError');
 
@@ -13,6 +15,10 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
+// Routes
+app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes);
+
 app.get('/', (req, res) => {
   res.send('TMDB Express API is running...');
 });
@@ -23,4 +29,5 @@ app.all('*', (req, res, next) => {
 });
 
 app.use(errorHandler);
+
 module.exports = app;
