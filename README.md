@@ -30,6 +30,8 @@ MONGO_URI=mongodb://localhost:27017/tmdb-app
 TMDB_API_URL=https://api.themoviedb.org/3
 TMDB_API_KEY=your_tmdb_api_key
 JWT_SECRET=your_jwt_secret
+REDIS_URL=redis://redis:6379
+REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 NODE_ENV=development
 ```
