@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    ports:
+      - '${PORT}:${PORT}'
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      TMDB_API_URL: ${TMDB_API_URL}
+      TMDB_API_KEY: ${TMDB_API_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      PORT: ${PORT}
+      REDIS_HOST: redis
+      REDIS_PORT: ${REDIS_PORT}
+      NODE_ENV: ${NODE_ENV}
+  mongo:
+    image: mongo
+    command: ['mongod', '--quiet']
+    ports:
+      - '27017:27017'
+  redis:
+    image: redis
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
